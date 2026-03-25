@@ -1,11 +1,11 @@
-const BASE_URL = "http://localhost:3000/users";
+const BASE_URL = "http://localhost:3000/students";
 
-export async function fetchUsers() {
+export async function fetchStudents() {
     const res = await fetch(BASE_URL);
     return res.json();
 }
 
-export async function createUser(data) {
+export async function createStudent(data) {
     return fetch(BASE_URL, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -13,7 +13,7 @@ export async function createUser(data) {
     });
 }
 
-export async function updateUser(ra, data) {
+export async function updateStudent(ra, data) {
     return fetch(`${BASE_URL}/${ra}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
@@ -21,7 +21,7 @@ export async function updateUser(ra, data) {
     });
 }
 
-export async function deleteUser(ra) {
+export async function deleteStudent(ra) {
     return fetch(`${BASE_URL}/${ra}`, {
         method: "DELETE"
     });

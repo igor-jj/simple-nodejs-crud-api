@@ -1,15 +1,15 @@
-import { fetchUsers, createUser, updateUser, deleteUser } from "./api/users.js";
+import { fetchStudents, createStudent, updateStudent, deleteStudent } from "./api/students.js";
 import { state, setEditingRa, resetState } from "./state/appState.js";
 import { tbody, form } from "./ui/dom.js";
-import { renderUsers } from "./ui/render.js";
+import { renderStudents } from "./ui/render.js";
 import { fillForm, resetFormUI } from "./ui/form.js";
 
-async function loadUsers() {
-    const users = await fetchUsers();
-    renderUsers(users);
+async function loadStudents() {
+    const students = await fetchStudents();
+    renderStudents(students);
 }
 
-loadUsers();
+loadStudents();
 
 tbody.addEventListener("click", async (event) => {
     const element = event.target;
@@ -30,8 +30,8 @@ tbody.addEventListener("click", async (event) => {
     } else if (element.classList.contains("remove")) {
         if (!confirm("Tem certeza?")) return;
 
-        await deleteUser(ra);
-        loadUsers();
+        await deleteStudent(ra);
+        loadStudents();
     }
 });
 
@@ -44,14 +44,14 @@ form.addEventListener("submit", async (event) => {
     if (!state.editingRa) {
         const ra = document.querySelector("#ra").value;
 
-        await createUser({ name, email, ra });
+        await createStudent({ name, email, ra });
     } else {
-        await updateUser(state.editingRa, { name, email });
+        await updateStudent(state.editingRa, { name, email });
     }
 
     resetState();
     resetFormUI();
-    loadUsers();
+    loadStudents();
 });
 
 form.addEventListener("reset", () => {

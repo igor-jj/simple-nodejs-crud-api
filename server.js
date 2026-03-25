@@ -1,7 +1,7 @@
 import http from "http";
 import "dotenv/config"
 
-import userRoutes from "./src/routes/userRoutes.js";
+import studentRoutes from "./src/routes/studentRoutes.js";
 
 const PORT = 3000;
 
@@ -15,7 +15,7 @@ const server = http.createServer(async (req, res) => {
         return res.end();
     }
     
-    await userRoutes(req, res);
+    await studentRoutes(req, res);
 });
 
 server.listen(PORT, () => {
