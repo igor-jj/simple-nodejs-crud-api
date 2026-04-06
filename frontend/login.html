@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style/login.css" />
+  </head>
+  <body>
+    <div class="bg-canvas"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="card">
+      <div class="header">
+        <div class="logo-mark">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        <h2 class="card-title">Bem-vindo</h2>
+        <p class="card-subtitle">Acesse sua conta</p>
+        <div class="divider"><span></span><i></i><span></span></div>
+      </div>
+
+      <form class="form" id="loginForm" novalidate>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <div class="input-wrap">
+            <input
+              type="email"
+              id="email"
+              placeholder="seu@email.com"
+              autocomplete="email"
+              required
+            />
+            <div class="input-line"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="password">Senha</label>
+          <div class="input-wrap">
+            <input
+              type="password"
+              id="password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+            />
+            <button
+              type="button"
+              class="toggle-pw"
+              aria-label="Mostrar senha"
+              id="togglePw"
+            >
+              <!-- eye icon -->
+              <svg id="eyeIcon" viewBox="0 0 24 24">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </button>
+            <div class="input-line"></div>
+          </div>
+        </div>
+
+        <p id="error"></p>
+
+        <button type="submit" class="btn-submit">
+          <span>
+            Entrar
+            <svg class="btn-arrow" viewBox="0 0 24 24">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </span>
+        </button>
+      </form>
+
+      <div class="card-footer">
+        Esqueceu a senha? <a href="#">Recuperar acesso</a>
+        <div class="divider" style="margin: 16px 0">
+          <span></span><i></i><span></span>
+        </div>
+        Não tem uma conta? <a href="/frontend/register.html">Criar conta</a>
+      </div>
+    </div>
+
+    <script>
+      // Password visibility toggle
+      const togglePw = document.getElementById("togglePw");
+      const pwInput = document.getElementById("password");
+      const eyeIcon = document.getElementById("eyeIcon");
+      const eyeOff = `<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/>`;
+      const eyeOn = `<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>`;
+
+      togglePw.addEventListener("click", () => {
+        const hidden = pwInput.type === "password";
+        pwInput.type = hidden ? "text" : "password";
+        eyeIcon.innerHTML = hidden ? eyeOff : eyeOn;
+      });
+    </script>
+
+    <script type="module" src="/login.js"></script>
+  </body>
+</html>

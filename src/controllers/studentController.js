@@ -4,10 +4,7 @@ export async function getAllStudents(req, res) {
   try {
     const students = await studentService.getAllStudents();
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({
-      id: students.id,
-      email: students.email
-    }));
+    res.end(JSON.stringify(students));
   } catch (err) {
     res.statusCode = 500;
     return res.end("Internal Server Error");
@@ -24,8 +21,8 @@ export async function createStudent(req, res, data) {
     const student = await studentService.createStudent(data);
     res.writeHead(201, { "Content-Type": "application/json" });
     res.end(JSON.stringify({
-      id: students.id,
-      email: students.email
+      id: student.id,
+      email: student.email
     }));
   } catch (err) {
     res.statusCode = 500;
