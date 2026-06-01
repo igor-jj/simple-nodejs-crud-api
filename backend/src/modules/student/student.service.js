@@ -1,10 +1,10 @@
-import sql from "../database/connection.js";
+import sql from "../../database/connection.js";
 
-export async function getAllUsers() {
+export async function getAllStudents() {
     return await sql`SELECT * FROM students`;
 };
 
-export async function createUser(data) {
+export async function createStudent(data) {
     const result = await sql`
         INSERT INTO students (ra, name, email)
         VALUES(${data.ra}, ${data.name}, ${data.email})
@@ -14,7 +14,7 @@ export async function createUser(data) {
     return result[0];
 };
 
-export async function updateUser(ra, data) {
+export async function updateStudent(ra, data) {
     const result = await sql`
         UPDATE students
         SET name = ${data.name}, email = ${data.email}
@@ -25,7 +25,7 @@ export async function updateUser(ra, data) {
     return result[0];
 };
 
-export async function deleteUser(ra) {
+export async function deleteStudent(ra) {
     const result = await sql`
         DELETE FROM students
         WHERE ra = ${ra}

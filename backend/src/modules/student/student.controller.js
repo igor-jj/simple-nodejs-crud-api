@@ -1,54 +1,57 @@
-import * as userService from "../services/userService.js";
+import * as studentService from "./student.service.js";
 
-export async function getAllUsers(req, res) {
+export async function getAllStudents(req, res) {
   try {
-    const users = await userService.getAllUsers();
+    const students = await studentService.getAllStudents();
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(users));
+    res.end(JSON.stringify(students));
   } catch (err) {
     res.statusCode = 500;
     return res.end("Internal Server Error");
   }
 }
 
-export async function createUser(req, res, data) {
+export async function createStudent(req, res, data) {
   if (!data.ra || !data.name || !data.email) {
     res.statusCode = 400;
     return res.end("Bad request");
   }
 
   try {
-    const user = await userService.createUser(data);
+    const student = await studentService.createStudent(data);
     res.writeHead(201, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(user));
+    res.end(JSON.stringify({
+      id: student.id,
+      email: student.email
+    }));
   } catch (err) {
     res.statusCode = 500;
     return res.end("Internal Server Error");
   }
 }
 
-export async function updateUser(req, res, ra, data) {
+export async function updateStudent(req, res, ra, data) {
   try {
-    const user = await userService.updateUser(ra, data);
-    if (!user) {
+    const student = await studentService.updateStudent(ra, data);
+    if (!student) {
       res.statusCode = 404;
-      return res.end("User not found");
+      return res.end("Student not found");
     }
 
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(JSON.stringify(user));
+    res.end(JSON.stringify(student));
   } catch (err) {
     res.statusCode = 500;
     return res.end("Internal Server Error");
   }
 }
 
-export async function deleteUser(req, res, ra) {
+export async function deleteStudent(req, res, ra) {
   try {
-    const user = await userService.deleteUser(ra);
-    if (!user) {
+    const student = await studentService.deleteStudent(ra);
+    if (!student) {
       res.statusCode = 404;
-      return res.end("User not found");
+      return res.end("Student not found");
     }
 
     res.statusCode = 204;

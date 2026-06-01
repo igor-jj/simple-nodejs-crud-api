@@ -1,10 +1,10 @@
 import { raInput, modeText, form } from "./dom.js";
 
-export function fillForm(user) {
-    document.querySelector("#name").value = user.name;
-    document.querySelector("#email").value = user.email;
+export function fillForm(student) {
+    document.querySelector("#name").value = student.name;
+    document.querySelector("#email").value = student.email;
 
-    raInput.value = user.ra;
+    raInput.value = student.ra;
     raInput.disabled = true;
 
     modeText.textContent = "Editar Aluno";
