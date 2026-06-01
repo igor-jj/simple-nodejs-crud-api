@@ -3,10 +3,10 @@ import {
   createStudent,
   updateStudent,
   deleteStudent,
-} from "../controllers/studentController.js";
+} from "./student.controller.js";
 
-import { authMiddleware } from "../utils/authMiddleware.js";
-import parseBody from "../utils/parseBody.js";
+import { authMiddleware } from "../../middlewares/auth.middleware.js";
+import parseBody from "../../utils/parseBody.js";
 
 export default async function studentRoutes(req, res) {
 

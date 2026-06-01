@@ -1,4 +1,4 @@
-import sql from "../database/connection.js";
+import sql from "../../database/connection.js";
 
 export async function getAllStudents() {
     return await sql`SELECT * FROM students`;

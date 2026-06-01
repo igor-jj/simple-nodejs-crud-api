@@ -1,4 +1,4 @@
-import { verifyToken } from "./token.js";
+import { verifyToken } from "../utils/token.js";
 import sql from "../database/connection.js";
 
 export async function authMiddleware(req, res) {

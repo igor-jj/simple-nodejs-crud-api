@@ -2,9 +2,9 @@ import {
   register,
   login,
   logout
-} from "../controllers/authController.js";
+} from "./auth.controller.js";
 
-import { authMiddleware } from "../utils/authMiddleware.js";
+import { authMiddleware } from "../../middlewares/auth.middleware.js";
 
 export default async function authRoutes(req, res) {
   if (req.url === "/auth/register" && req.method === "POST") {

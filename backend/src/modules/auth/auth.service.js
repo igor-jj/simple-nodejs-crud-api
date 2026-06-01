@@ -1,6 +1,6 @@
-import sql from "../database/connection.js";
-import { hashPassword, comparePassword } from "../utils/hash.js";
-import { generateToken } from "../utils/token.js";
+import sql from "../../database/connection.js";
+import { hashPassword, comparePassword } from "../../utils/hash.js";
+import { generateToken } from "../../utils/token.js";
 
 export async function register({ email, password }) {
   const existing = await sql`

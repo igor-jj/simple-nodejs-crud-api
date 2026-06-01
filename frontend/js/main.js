@@ -4,16 +4,18 @@ import {
   updateStudent,
   deleteStudent,
 } from "./api/students.js";
+
+import { logoutRequest } from "./api/auth.api.js";
+import { getToken, requireAuth } from "./utils/auth.js";
+
 import { state, setEditingRa, resetState } from "./state/appState.js";
 import { tbody, form } from "./ui/dom.js";
 import { renderStudents } from "./ui/render.js";
 import { fillForm, resetFormUI } from "./ui/form.js";
 
-const token = localStorage.getItem("token");
+requireAuth(); // 🔐 proteção de rota
 
-if (!token) {
-  window.location.href = "login.html";
-}
+const token = getToken();
 
 async function loadStudents() {
   const students = await fetchStudents();
@@ -53,7 +55,6 @@ form.addEventListener("submit", async (event) => {
 
   if (!state.editingRa) {
     const ra = document.querySelector("#ra").value;
-
     await createStudent({ name, email, ra });
   } else {
     await updateStudent(state.editingRa, { name, email });
@@ -70,12 +71,7 @@ form.addEventListener("reset", () => {
 });
 
 document.getElementById("logoutBtn").addEventListener("click", async () => {
-  await fetch("http://localhost:3000/auth/logout", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  await logoutRequest(token);
   localStorage.removeItem("token");
   window.location.href = "login.html";
 });

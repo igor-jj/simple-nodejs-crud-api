@@ -1,5 +1,5 @@
-import * as authService from "../services/authService.js";
-import parseBody from "../utils/parseBody.js";
+import * as authService from "./auth.service.js";
+import parseBody from "../../utils/parseBody.js";
 
 export async function register(req, res) {
   try {
